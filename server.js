@@ -4,13 +4,13 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
 const port = 3000;
+
 // Store data in memory (optional: later we can persist in a file)
 let storedData = [];
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json({ limit: '10gb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '10gb' })); 
+app.use(bodyParser.json());
 
 // Route to collect data from cross-browser extension
 app.post('/collect', (req, res) => {
@@ -29,7 +29,6 @@ app.get('/data', (req, res) => {
   res.status(200).json(storedData);
 });
 
-<<<<<<< HEAD
 // Route to clear stored data (optional)
 app.post('/clear', (req, res) => {
   storedData = [];
@@ -41,8 +40,3 @@ app.post('/clear', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-=======
-app.listen(port, () => {    
-    console.log(`Server is running at http://localhost:${port}`);
-});
->>>>>>> 1bac4ea7e3cdfdf0385a80ae6525d1e0aefc20ca
